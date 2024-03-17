@@ -1,0 +1,6 @@
+{
+  "name": "@md/assert-console",
+  "version": "0.0.0",
+  "exports": "./main.ts",
+  "imports": { "@std/assert": "jsr:@std/assert@^0.220.1" }
+}
