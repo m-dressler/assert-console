@@ -51,9 +51,10 @@ export const assertConsole = (expected: Partial<LogHistory>) => {
   forEachChannel((channel) => {
     if (expected[channel] === undefined) expected[channel] = [];
   });
-
-  assertEquals(values, expected, "Logged lines don't match expected logs.");
-
-  // Reset values as we successfully checked logs
+  /** The state of logs at assert (since we clear them so even if it fails, logs are clean again) */
+  const snapshot = { ...values };
+  // Reset values so next check starts from a clean slate
   forEachChannel((channel) => (values[channel] = []));
+
+  assertEquals(snapshot, expected, "Logged lines don't match expected logs.");
 };
